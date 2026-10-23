@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://b14o7v5ncnymy"]
+
+[ext_resource type="Script" uid="uid://wht1ke7uro52" path="res://scripts/global/audio_manager.gd" id="1_qxga5"]
+
+[node name="AudioManager" type="Node" unique_id=1923064297 node_paths=PackedStringArray("music", "sounds", "BGS", "ui", "confirm_sfx", "move_sfx", "back_sfx")]
+process_mode = 3
+script = ExtResource("1_qxga5")
+music = NodePath("Musics")
+sounds = NodePath("Sounds")
+BGS = NodePath("BGS")
+ui = NodePath("UI")
+confirm_sfx = NodePath("UI/MenuConfirm")
+move_sfx = NodePath("UI/MenuMove")
+back_sfx = NodePath("UI/MenuBack")
+
+[node name="Musics" type="Node" parent="." unique_id=1933384434]
+
+[node name="Test" type="AudioStreamPlayer" parent="Musics" unique_id=1114688279]
+
+[node name="Sounds" type="Node" parent="." unique_id=1718301511]
+
+[node name="Test" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1856399907]
+
+[node name="BGS" type="Node" parent="." unique_id=1326326623]
+
+[node name="Test" type="AudioStreamPlayer" parent="BGS" unique_id=1863189058]
+bus = &"BGS"
+
+[node name="UI" type="Node" parent="." unique_id=1757287764]
+
+[node name="MenuConfirm" type="AudioStreamPlayer" parent="UI" unique_id=1837801471]
+volume_db = -4.0
+bus = &"SFX"
+
+[node name="MenuMove" type="AudioStreamPlayer" parent="UI" unique_id=1739030589]
+bus = &"SFX"
+
+[node name="MenuBack" type="AudioStreamPlayer" parent="UI" unique_id=1583536149]
+volume_db = -4.0
+pitch_scale = 0.9
+bus = &"SFX"
