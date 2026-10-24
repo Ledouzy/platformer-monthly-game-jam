@@ -17,7 +17,7 @@ func _physics_process(delta: float) -> void:
 
 	# Tap jump.
 	if Input.is_action_just_released("jump") and velocity.y < 0:
-		velocity.y = JUMP_VELOCITY * 0.5
+		velocity.y = velocity.y * 0.5
 	
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
