@@ -28,3 +28,8 @@ shape = SubResource("RectangleShape2D_ihebq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1683560496]
 sprite_frames = SubResource("SpriteFrames_ihebq")
+
+[node name="HoverTimer" type="Timer" parent="." unique_id=407635489]
+wait_time = 2.0
+
+[connection signal="timeout" from="HoverTimer" to="." method="_on_hover_timer_timeout"]
