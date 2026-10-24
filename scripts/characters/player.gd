@@ -46,40 +46,35 @@ func _physics_process(delta: float) -> void:
 		hover_timer.start()
 		
 		velocity += Vector2(-JUMP_VELOCITY * sin(rotation), JUMP_VELOCITY * cos(rotation))
-		# Cap speed
-		if abs(velocity.length()) > MAX_JUMP_SPEED:
-			velocity = velocity.normalized() * MAX_JUMP_SPEED
-			
+		# Cap speed don't really need this anymore
+		#if abs(Vector2(velocity.x * sin(rotation), velocity.y * cos(rotation))).length() > MAX_JUMP_SPEED:
+			#print("hover max jump velocity")
+			#velocity = velocity.normalized() * MAX_JUMP_SPEED
+		
+		# Stop after a while to not accelerate infinitely. Might lead to some problem because we simply go toward 0 and not go to 0
 		await get_tree().create_timer(0.3).timeout
 		var hovx = move_toward(velocity.x, 0, abs(hover_slowdown * sin(rotation)) * delta)
 		var hovy = move_toward(velocity.y, 0, abs(hover_slowdown * cos(rotation)) * delta)
 		cant_hover = true
-		#hovx = velocity.x
-		
-		#print(cos(rotation),", ", sin(rotation))
-		#print(hovx, " ,", hovy)
-		
+
 		velocity = Vector2(hovx, hovy)
 	
 	var rotate_direction := Input.get_axis("turn_left", "turn_right")
-	# Rotate Left
+	# Rotate in direction
 	if rotate_direction:
 		rotation = rotation + ROTATION_SPEED * rotate_direction * delta
 
 	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("left", "right")
 	if direction:
 		if abs(velocity.x) < MAX_SPEED:
 			velocity += direction * Vector2(SPEED * cos(rotation), SPEED * sin(rotation)) * delta
-			#print(direction * Vector2(SPEED * cos(rotation), SPEED * sin(rotation)) * delta)
-			#print("velocity: ", velocity)
 		if abs(velocity.length()) > MAX_SPEED:
 			velocity = velocity.normalized() * MAX_SPEED
 	else:
+		# Calculate the friction/slowdown to not accelerate infinitely
 		var frix = move_toward(velocity.x, 0, abs(SPEED) * delta)
 		var friy = move_toward(velocity.y, 0, abs(SPEED * sin(rotation)) * delta)
-		#print(frix, " ,", friy)
 		velocity = Vector2(frix, friy)
 
 	move_and_slide()
