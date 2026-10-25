@@ -1,10 +1,51 @@
 [gd_scene format=4 uid="uid://c453vi2vcjbuv"]
 
+[ext_resource type="Texture2D" uid="uid://b2sfk7qnyxm0q" path="res://assets/sprites/background/world1_layer0.png" id="1_5kr0j"]
 [ext_resource type="TileSet" uid="uid://c3qkd0t3hoiln" path="res://assets/tilemaps/placeholder_tileset.tres" id="1_o8kyb"]
 [ext_resource type="PackedScene" uid="uid://da5mlm4gym12d" path="res://scenes/characters/player.tscn" id="2_cperm"]
 [ext_resource type="Script" uid="uid://cer4xy4a1wyuo" path="res://scripts/logic/camera_controller.gd" id="2_hghvf"]
+[ext_resource type="Texture2D" uid="uid://dpgwww1mxj8ke" path="res://assets/sprites/background/world1_layer1.png" id="2_ry65h"]
+[ext_resource type="Texture2D" uid="uid://b0f4my4xo58fb" path="res://assets/sprites/background/world1_layer2.png" id="3_d0grl"]
+[ext_resource type="Texture2D" uid="uid://c8v0ytjjbejmc" path="res://assets/sprites/background/world1_layer3.png" id="4_1nvli"]
 
 [node name="Node2D" type="Node2D" unique_id=1663114360]
+
+[node name="Background" type="Node2D" parent="." unique_id=1675224427]
+
+[node name="Parallax2D" type="Parallax2D" parent="Background" unique_id=435032211]
+scroll_scale = Vector2(0, 0.1)
+scroll_offset = Vector2(128, 96)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D" unique_id=1355837336]
+texture = ExtResource("1_5kr0j")
+
+[node name="Parallax2D2" type="Parallax2D" parent="Background" unique_id=139648047]
+scroll_scale = Vector2(0.2, 0.2)
+scroll_offset = Vector2(128, 96)
+repeat_size = Vector2(256, 0)
+autoscroll = Vector2(5, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D2" unique_id=1377763574]
+texture = ExtResource("2_ry65h")
+
+[node name="Parallax2D3" type="Parallax2D" parent="Background" unique_id=1217131323]
+scroll_scale = Vector2(0.3, 0.3)
+scroll_offset = Vector2(128, 96)
+repeat_size = Vector2(256, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D3" unique_id=2121453835]
+texture = ExtResource("3_d0grl")
+
+[node name="Parallax2D4" type="Parallax2D" parent="Background" unique_id=1447154173]
+scroll_scale = Vector2(0.5, 0.5)
+scroll_offset = Vector2(128, 96)
+repeat_size = Vector2(256, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D4" unique_id=526026622]
+texture = ExtResource("4_1nvli")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1196302294]
 tile_map_data = PackedByteArray("AAD+/wEAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAABAAIAAAAAAAAAAAAAAAIAAAAAAAAAAAD//wIAAAAAAAAAAAD+/wIAAAAAAAAAAAD9/wIAAAAAAAAAAAD8/wIAAAAAAAAAAAD9/wEAAAAAAAAAAAD8/wEAAAAAAAAAAAD8/wMAAAAAAAAAAAD9/wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wMAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAMAAAAAAAAAAAACAAMAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAADAAMAAAAAAAAAAAD7/wEAAAAAAAAAAAD6/wEAAAAAAAAAAAD5/wEAAAAAAAAAAAD4/wEAAAAAAAAAAAD3/wEAAAAAAAAAAAD2/wEAAAAAAAAAAAD1/wEAAAAAAAAAAAD0/wEAAAAAAAAAAADz/wEAAAAAAAAAAADz/wIAAAAAAAAAAADy/wIAAAAAAAAAAADx/wIAAAAAAAAAAADw/wIAAAAAAAAAAADx/wEAAAAAAAAAAADy/wEAAAAAAAAAAADw/wEAAAAAAAAAAADv/wEAAAAAAAAAAADx/wMAAAAAAAAAAADy/wMAAAAAAAAAAADz/wMAAAAAAAAAAAD0/wMAAAAAAAAAAAD1/wMAAAAAAAAAAAD2/wMAAAAAAAAAAAD3/wMAAAAAAAAAAAD4/wMAAAAAAAAAAAD5/wMAAAAAAAAAAAD6/wMAAAAAAAAAAAD7/wMAAAAAAAAAAADv/wIAAAAAAAAAAADv/wMAAAAAAAAAAADw/wMAAAAAAAAAAAD0/wIAAAAAAAAAAAD1/wIAAAAAAAAAAAD2/wIAAAAAAAAAAAD3/wIAAAAAAAAAAAD4/wIAAAAAAAAAAAD5/wIAAAAAAAAAAAD6/wIAAAAAAAAAAAD7/wIAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAMAAAAAAAAAAAAGAAEAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAMAAAAAAAAAAAAJAAEAAAAAAAAAAAAJAAIAAAAAAAAAAAAJAAMAAAAAAAAAAAAKAAEAAAAAAAAAAAAKAAIAAAAAAAAAAAAKAAMAAAAAAAAAAAALAAEAAAAAAAAAAAALAAIAAAAAAAAAAAALAAMAAAAAAAAAAAAMAAEAAAAAAAAAAAAMAAIAAAAAAAAAAAAMAAMAAAAAAAAAAAANAAEAAAAAAAAAAAANAAIAAAAAAAAAAAANAAMAAAAAAAAAAAAOAAEAAAAAAAAAAAAOAAIAAAAAAAAAAAAOAAMAAAAAAAAAAAAPAAEAAAAAAAAAAAAPAAIAAAAAAAAAAAAPAAMAAAAAAAAAAAAQAAEAAAAAAAAAAAAQAAIAAAAAAAAAAAAQAAMAAAAAAAAAAAARAAEAAAAAAAAAAAARAAIAAAAAAAAAAAARAAMAAAAAAAAAAAA=")
