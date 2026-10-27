@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_released("jump"):
 		# Tap Jump
 		if velocity.length() < 0:
-			velocity = Vector2(-JUMP_VELOCITY * sin(rotation), JUMP_VELOCITY * cos(rotation)) * 0.25
+			velocity = Vector2(-velocity.x * sin(rotation), velocity.y * cos(rotation)) * 0.25
 		# Cancel Hover
 		hover = false
 		hover_timer.stop()
