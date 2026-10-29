@@ -4,12 +4,14 @@ extends CharacterBody2D
 # Player - by Léon
 # Player Movement and logic
 
-@export var SPEED = 300.0
-@export var MAX_SPEED = 200
-@export var MAX_JUMP_SPEED = 300
-@export var ROTATION_SPEED = 5
-@export var JUMP_VELOCITY = -150.0
-@export var hover_slowdown = 400000
+@export var SPEED = 300.0 # velocity applied each frame moving
+@export var MAX_SPEED = 200 # max speed the character can move (relative x-coords)
+@export var MAX_JUMP_SPEED = 300 # max speed the character can jump (relative y-coords)
+@export var ROTATION_SPEED = 5 # speed at which rotation occurs
+@export var JUMP_VELOCITY = -150.0 # velocity applied at jump
+@export var hover_slowdown = 400000 # speed at which we stop the player after a jump
+@export var hover_slowdown_multiplier = 0.25 # multiplier to gravity when holding jump after hover
+@export var gravity_multiplier = 0.5 # multiplier to gravity
 
 var hover: bool = false
 var cant_hover: bool = false
@@ -20,7 +22,10 @@ var cant_hover: bool = false
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor() and !hover:
-		velocity += get_gravity() * 0.5 * delta
+		var slowdown_multiplier = 1
+		if Input.is_action_pressed("jump"):
+			slowdown_multiplier = hover_slowdown_multiplier
+		velocity += get_gravity() * gravity_multiplier * slowdown_multiplier * delta
 	if is_on_floor():
 		cant_hover = false
 		
@@ -47,9 +52,8 @@ func _physics_process(delta: float) -> void:
 		
 		velocity += Vector2(-JUMP_VELOCITY * sin(rotation), JUMP_VELOCITY * cos(rotation))
 		# Cap speed don't really need this anymore
-		#if abs(Vector2(velocity.x * sin(rotation), velocity.y * cos(rotation))).length() > MAX_JUMP_SPEED:
-			#print("hover max jump velocity")
-			#velocity = velocity.normalized() * MAX_JUMP_SPEED
+		if sqrt(pow((velocity.x * sin(rotation)),2) + pow((velocity.y * cos(rotation)),2)) > MAX_JUMP_SPEED:
+			velocity = velocity.normalized() * MAX_JUMP_SPEED
 		
 		# Stop after a while to not accelerate infinitely. Might lead to some problem because we simply go toward 0 and not go to 0
 		await get_tree().create_timer(0.3).timeout
@@ -63,13 +67,17 @@ func _physics_process(delta: float) -> void:
 	# Rotate in direction
 	if rotate_direction:
 		rotation = rotation + ROTATION_SPEED * rotate_direction * delta
+		print("new rot: ", rotation)
 
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("left", "right")
 	if direction:
 		if abs(velocity.x) < MAX_SPEED:
+			print("rot: ", rotation)
+			print("velocity: ", Vector2(SPEED * cos(rotation), SPEED * sin(rotation)))
 			velocity += direction * Vector2(SPEED * cos(rotation), SPEED * sin(rotation)) * delta
-		if abs(velocity.length()) > MAX_SPEED:
+		# if x value according to current rotation is greater than max speed
+		if sqrt(pow((velocity.x * cos(rotation)),2) + pow((velocity.y * sin(rotation)),2)) > MAX_SPEED:
 			velocity = velocity.normalized() * MAX_SPEED
 	else:
 		# Calculate the friction/slowdown to not accelerate infinitely
