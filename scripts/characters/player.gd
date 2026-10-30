@@ -16,8 +16,37 @@ extends CharacterBody2D
 var hover: bool = false
 var cant_hover: bool = false
 
-@onready var hover_timer: Timer = $HoverTimer
+# animation variables
+var moving_left_anim: bool = false
+var moving_right_anim: bool = false
+var idle_anim: bool = true
+var jump_anim: bool = false
+var hover_anim: bool = false
+var hover_end_anim: bool = false
+var lock_animation: bool = false
 
+@onready var hover_timer: Timer = $HoverTimer
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+
+func process_animation():
+	if !lock_animation:
+		if jump_anim:
+			sprite.play("jump")
+			await sprite.animation_finished
+			jump_anim = false
+		elif hover_end_anim:
+			sprite.play("hoverEnd")
+			hover_end_anim = false
+			lock_animation = true
+			await sprite.animation_finished
+		elif moving_left_anim:
+			sprite.play("moveLeft")
+		elif moving_right_anim:
+			sprite.play("moveRight")
+		elif hover_anim:
+			sprite.play("hover")
+		else:
+			sprite.play("idle")
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -27,6 +56,7 @@ func _physics_process(delta: float) -> void:
 			slowdown_multiplier = hover_slowdown_multiplier
 		velocity += get_gravity() * gravity_multiplier * slowdown_multiplier * delta
 	if is_on_floor():
+		lock_animation = false
 		cant_hover = false
 		
 	# Release jump key
@@ -36,6 +66,8 @@ func _physics_process(delta: float) -> void:
 			velocity = Vector2(-velocity.x * sin(rotation), velocity.y * cos(rotation)) * 0.25
 		# Cancel Hover
 		hover = false
+		hover_anim = false
+		hover_end_anim = true
 		hover_timer.stop()
 	
 	# Hover in air
@@ -49,6 +81,8 @@ func _physics_process(delta: float) -> void:
 		# starts hovering
 		hover = true
 		hover_timer.start()
+		jump_anim = true
+		hover_anim = true
 		
 		velocity += Vector2(-JUMP_VELOCITY * sin(rotation), JUMP_VELOCITY * cos(rotation))
 		# Cap speed don't really need this anymore
@@ -64,17 +98,39 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2(hovx, hovy)
 	
 	var rotate_direction := Input.get_axis("turn_left", "turn_right")
+	# animation direction
+	if rotate_direction < 0:
+		moving_left_anim = true
+		moving_right_anim = false
+	elif rotate_direction > 0:
+		moving_right_anim = true
+		moving_left_anim = false
+	else:
+		moving_right_anim = false
+		moving_left_anim = false
+			
 	# Rotate in direction
-	if rotate_direction:
+	if rotate_direction:	
 		rotation = rotation + ROTATION_SPEED * rotate_direction * delta
-		print("new rot: ", rotation)
+		#print("new rot: ", rotation)
 
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("left", "right")
-	if direction:
+	# animation direction
+	if direction < 0:
+		moving_left_anim = true
+		moving_right_anim = false
+	elif direction > 0:
+		moving_right_anim = true
+		moving_left_anim = false
+	else:
+		moving_right_anim = false
+		moving_left_anim = false
+	
+	if direction:	
 		if abs(velocity.x) < MAX_SPEED:
-			print("rot: ", rotation)
-			print("velocity: ", Vector2(SPEED * cos(rotation), SPEED * sin(rotation)))
+			#print("rot: ", rotation)
+			#print("velocity: ", Vector2(SPEED * cos(rotation), SPEED * sin(rotation)))
 			velocity += direction * Vector2(SPEED * cos(rotation), SPEED * sin(rotation)) * delta
 		# if x value according to current rotation is greater than max speed
 		if sqrt(pow((velocity.x * cos(rotation)),2) + pow((velocity.y * sin(rotation)),2)) > MAX_SPEED:
@@ -84,9 +140,13 @@ func _physics_process(delta: float) -> void:
 		var frix = move_toward(velocity.x, 0, abs(SPEED) * delta)
 		var friy = move_toward(velocity.y, 0, abs(SPEED * sin(rotation)) * delta)
 		velocity = Vector2(frix, friy)
-
+	
+	process_animation()
+	
 	move_and_slide()
 
 
 func _on_hover_timer_timeout() -> void:
 	hover = false
+	hover_anim = false
+	hover_end_anim = true

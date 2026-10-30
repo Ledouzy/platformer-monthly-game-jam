@@ -6,18 +6,125 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ihebq"]
 size = Vector2(16, 5)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgnko"]
+atlas = ExtResource("2_yewv4")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vyk4"]
+atlas = ExtResource("2_yewv4")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2l4js"]
+atlas = ExtResource("2_yewv4")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jk2m4"]
+atlas = ExtResource("2_yewv4")
+region = Rect2(32, 48, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_76oj4"]
 atlas = ExtResource("2_yewv4")
 region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yewv4"]
+atlas = ExtResource("2_yewv4")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqtwu"]
+atlas = ExtResource("2_yewv4")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6eyoc"]
+atlas = ExtResource("2_yewv4")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eojnx"]
+atlas = ExtResource("2_yewv4")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyp2m"]
+atlas = ExtResource("2_yewv4")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_atpat"]
+atlas = ExtResource("2_yewv4")
+region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ihebq"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_76oj4")
+"texture": SubResource("AtlasTexture_qgnko")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"hover",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_7vyk4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2l4js")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jk2m4")
+}],
+"loop": 0,
+"name": &"hoverEnd",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_76oj4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yewv4")
+}, {
+"duration": 7.0,
+"texture": SubResource("AtlasTexture_76oj4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yewv4")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_76oj4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yewv4")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_kqtwu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6eyoc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eojnx")
+}],
+"loop": 0,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyp2m")
+}],
+"loop": 1,
+"name": &"moveLeft",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_atpat")
+}],
+"loop": 1,
+"name": &"moveRight",
 "speed": 5.0
 }]
 
@@ -29,8 +136,9 @@ position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_ihebq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1683560496]
-position = Vector2(0, 5)
+position = Vector2(0, -2)
 sprite_frames = SubResource("SpriteFrames_ihebq")
+animation = &"hoverEnd"
 
 [node name="HoverTimer" type="Timer" parent="." unique_id=407635489]
 wait_time = 2.0
