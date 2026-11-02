@@ -6,5 +6,5 @@ extends Camera2D
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	position = player.position + offset
-	pass
+	if !player.is_dead():
+		position = player.position + offset

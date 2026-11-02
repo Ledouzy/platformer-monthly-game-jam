@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://b8po6fb3rwwg0"]
+
+[ext_resource type="Script" uid="uid://bmsq17ysretdg" path="res://scripts/logic/hurt_box.gd" id="1_stvhb"]
+
+[node name="HurtBox" type="Area2D" unique_id=42430512]
+script = ExtResource("1_stvhb")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

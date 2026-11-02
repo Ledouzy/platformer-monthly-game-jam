@@ -4,6 +4,10 @@ extends CharacterBody2D
 # Player - by Léon
 # Player Movement and logic
 
+@export_group("General")
+@export var MAX_HEALTH: int = 6 # max hp
+
+@export_group("Movement")
 @export var SPEED = 300.0 # velocity applied each frame moving
 @export var MAX_SPEED = 200 # max speed the character can move (relative x-coords)
 @export var MAX_JUMP_SPEED = 300 # max speed the character can jump (relative y-coords)
@@ -12,9 +16,14 @@ extends CharacterBody2D
 @export var hover_slowdown = 400000 # speed at which we stop the player after a jump
 @export var hover_slowdown_multiplier = 0.25 # multiplier to gravity when holding jump after hover
 @export var gravity_multiplier = 0.5 # multiplier to gravity
+@export var MAXCOYOTETIME = .14 # max time in air before we can't jump anymore
 
 var hover: bool = false
 var cant_hover: bool = false
+var speed_mult: float = 1
+var coyote_timer: float = 0
+var invulnerable = false
+var dead = false
 
 # animation variables
 var moving_left_anim: bool = false
@@ -25,8 +34,61 @@ var hover_anim: bool = false
 var hover_end_anim: bool = false
 var lock_animation: bool = false
 
+@onready var health = MAX_HEALTH
 @onready var hover_timer: Timer = $HoverTimer
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var damage_timer: Timer = $DamageTimer
+@onready var death_timer: Timer = $DeathTimer
+@onready var blink_animation_player: AnimationPlayer = $BlinkAnimationPlayer
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
+
+func is_dead():
+	return dead
+	
+func set_dead():
+	dead = true
+	hover = false
+	collision_shape.disabled = true
+	play_sfx("Death")
+	velocity = Vector2(0,0)
+	death_timer.start()
+	
+func get_health():
+	return health
+	
+func get_max_health():
+	return MAX_HEALTH
+
+func take_damage(dmg: int, direction: Vector2):
+	if !invulnerable:
+		# set invulnerable
+		invulnerable = true
+		
+		# apply knockback
+		velocity += 60*direction
+		
+		health -= dmg
+		health = max(health,0)
+		
+		damage_timer.start()
+		if health <= 0:
+			set_dead()
+		else:
+			play_sfx("Damage")
+			blink_animation_player.play("blink")
+			hover = false
+		sprite.play("hoverEnd")
+		lock_animation = true
+		await sprite.animation_finished
+		lock_animation = false
+		
+# set the player's health to max
+func set_health_to_max():
+	# only play sfx when not full health
+	if health != MAX_HEALTH:
+		play_sfx("Heal")
+		
+	health = MAX_HEALTH
 
 func process_animation():
 	if !lock_animation:
@@ -49,6 +111,12 @@ func process_animation():
 			sprite.play("idle")
 
 func _physics_process(delta: float) -> void:
+	if dead:
+		velocity += get_gravity() * gravity_multiplier * delta
+		move_and_slide()
+		
+		return
+	
 	# Add the gravity.
 	if not is_on_floor() and !hover:
 		var slowdown_multiplier = 1
@@ -78,6 +146,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
+		play_sfx("Jump")
 		# starts hovering
 		hover = true
 		hover_timer.start()
@@ -150,3 +219,16 @@ func _on_hover_timer_timeout() -> void:
 	hover = false
 	hover_anim = false
 	hover_end_anim = true
+	
+# play a sound by calling the audio manager
+func play_sfx(sfx_name):
+	AudioManager.play_sfx(sfx_name, 0, self.position)
+
+
+func _on_damage_timer_timeout() -> void:
+	invulnerable = false
+
+
+func _on_death_timer_timeout() -> void:
+	SaveSystem.checkpoint_load(self)
+	SceneManager.reload_scene()
