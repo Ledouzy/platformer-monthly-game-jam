@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://dok5ekvn1exvr"]
+
+[ext_resource type="Texture2D" uid="uid://dkpokeqytvm2f" path="res://assets/sprites/objects/Spikes.png" id="1_tkv1w"]
+[ext_resource type="PackedScene" uid="uid://b8po6fb3rwwg0" path="res://scenes/logic/hurt_box.tscn" id="2_y7a2x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnicd"]
+atlas = ExtResource("1_tkv1w")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ihebq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnicd")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tkv1w"]
+size = Vector2(16, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihebq"]
+size = Vector2(16, 8)
+
+[node name="Node2D" type="Node2D" unique_id=955972890]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=522920321]
+sprite_frames = SubResource("SpriteFrames_ihebq")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=928759192]
+collision_mask = 0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=2142536487]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_tkv1w")
+
+[node name="HurtBox" parent="." unique_id=42430512 instance=ExtResource("2_y7a2x")]
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1385135153]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_ihebq")
