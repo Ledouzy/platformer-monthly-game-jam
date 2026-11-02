@@ -232,3 +232,8 @@ func _on_damage_timer_timeout() -> void:
 func _on_death_timer_timeout() -> void:
 	SaveSystem.checkpoint_load(self)
 	SceneManager.reload_scene()
+
+
+func _on_death_plane_body_entered(body: Node2D) -> void:
+	health = 0
+	set_dead.call_deferred()
