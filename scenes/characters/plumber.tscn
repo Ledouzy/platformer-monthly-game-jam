@@ -4,6 +4,18 @@
 [ext_resource type="Texture2D" uid="uid://bmqfg7h1qmybm" path="res://assets/sprites/characters/plumber.png" id="1_ik1vy"]
 [ext_resource type="PackedScene" uid="uid://b8po6fb3rwwg0" path="res://scenes/logic/hurt_box.tscn" id="2_57mt1"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u7v5p"]
+size = Vector2(7, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gvnxv"]
+size = Vector2(9, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8r4a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wv2l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c8bc1"]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_57mt1"]
 atlas = ExtResource("1_ik1vy")
 region = Rect2(0, 16, 16, 16)
@@ -20,13 +32,13 @@ region = Rect2(64, 0, 16, 16)
 atlas = ExtResource("1_ik1vy")
 region = Rect2(48, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pg2p4"]
-atlas = ExtResource("1_ik1vy")
-region = Rect2(0, 16, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_khlh6"]
 atlas = ExtResource("1_ik1vy")
 region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pg2p4"]
+atlas = ExtResource("1_ik1vy")
+region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ihebq"]
 animations = [{
@@ -54,47 +66,30 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pg2p4")
+"texture": SubResource("AtlasTexture_khlh6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_khlh6")
+"texture": SubResource("AtlasTexture_pg2p4")
 }],
 "loop": 1,
 "name": &"walk",
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihebq"]
-size = Vector2(7, 13)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6x4r8"]
-size = Vector2(9, 15)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8r4a"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wv2l"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c8bc1"]
-
 [node name="Plumber" type="CharacterBody2D" unique_id=1541852465]
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_gvnxv")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=986303931]
-sprite_frames = SubResource("SpriteFrames_ihebq")
-animation = &"idle"
-frame_progress = 0.47194877
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2132310298]
 position = Vector2(0.5, 0.5)
-shape = SubResource("RectangleShape2D_ihebq")
+shape = SubResource("RectangleShape2D_u7v5p")
 
 [node name="HurtBox" parent="." unique_id=42430512 instance=ExtResource("2_57mt1")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1162100004]
-position = Vector2(0.5, -0.5)
-shape = SubResource("RectangleShape2D_6x4r8")
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_gvnxv")
 
 [node name="VisibilityCastRight" type="ShapeCast2D" parent="." unique_id=1030163155]
 position = Vector2(10, 3)
@@ -113,3 +108,7 @@ position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_c8bc1")
 target_position = Vector2(32, 0)
 collision_mask = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=986303931]
+sprite_frames = SubResource("SpriteFrames_ihebq")
+animation = &"walk"

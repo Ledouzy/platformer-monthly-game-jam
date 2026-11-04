@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cl1oiedaheosq" path="res://scenes/logic/game_ui.tscn" id="8_f5esd"]
 [ext_resource type="PackedScene" uid="uid://brpnidogfn2dp" path="res://scenes/characters/plumber.tscn" id="10_5tpx0"]
 [ext_resource type="TileSet" uid="uid://c3qkd0t3hoiln" path="res://assets/tilemaps/placeholder_tileset.tres" id="10_53yew"]
+[ext_resource type="PackedScene" uid="uid://r2831cnb74l8" path="res://scenes/characters/hedgehog.tscn" id="11_5tpx0"]
 
 [node name="Test" type="Node2D" unique_id=1663114360]
 script = ExtResource("1_5tpx0")
@@ -77,3 +78,7 @@ collision_enabled = false
 
 [node name="Plumber" parent="." unique_id=1541852465 instance=ExtResource("10_5tpx0")]
 position = Vector2(125, 6)
+
+[node name="Hedgehog" parent="." unique_id=1981034381 instance=ExtResource("11_5tpx0")]
+position = Vector2(304, 5)
+JUMP_VELOCITY = -100.0
