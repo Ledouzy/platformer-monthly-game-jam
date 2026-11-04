@@ -63,6 +63,7 @@ func take_damage(dmg: int, direction: Vector2):
 	if !invulnerable:
 		# set invulnerable
 		invulnerable = true
+		collision_mask = 0b1 # ignore enemies
 		
 		# apply knockback
 		velocity += 60*direction
@@ -226,6 +227,7 @@ func play_sfx(sfx_name):
 
 
 func _on_damage_timer_timeout() -> void:
+	collision_mask = 0b101
 	invulnerable = false
 
 

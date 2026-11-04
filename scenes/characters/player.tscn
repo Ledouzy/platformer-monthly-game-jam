@@ -185,7 +185,6 @@ frame_progress = 1.0
 wait_time = 2.0
 
 [node name="DamageTimer" type="Timer" parent="." unique_id=39238245]
-wait_time = 3.0
 
 [node name="DeathTimer" type="Timer" parent="." unique_id=1959376248]
 wait_time = 3.0

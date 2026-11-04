@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://r2831cnb74l8"]
 
-[ext_resource type="Script" uid="uid://dbjxun6h83flr" path="res://scripts/characters/plumber.gd" id="1_a5r57"]
+[ext_resource type="Script" uid="uid://efv2a4qsn63i" path="res://scripts/characters/hedgehog.gd" id="1_a5r57"]
 [ext_resource type="PackedScene" uid="uid://b8po6fb3rwwg0" path="res://scenes/logic/hurt_box.tscn" id="2_nqqoc"]
 [ext_resource type="Texture2D" uid="uid://xfytjusqf8dc" path="res://assets/sprites/characters/hedgehog.png" id="3_ad2k8"]
 
@@ -29,6 +29,18 @@ atlas = ExtResource("3_ad2k8")
 region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_skb4w"]
+atlas = ExtResource("3_ad2k8")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47qfr"]
+atlas = ExtResource("3_ad2k8")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ijsw"]
+atlas = ExtResource("3_ad2k8")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxgdr"]
 atlas = ExtResource("3_ad2k8")
 region = Rect2(48, 16, 16, 16)
 
@@ -66,6 +78,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_47qfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ijsw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxgdr")
+}],
+"loop": 1,
+"name": &"roll",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_a5r57")
 }, {
 "duration": 1.0,
@@ -78,21 +104,25 @@ animations = [{
 
 [node name="Hedgehog" type="CharacterBody2D" unique_id=1541852465]
 collision_layer = 4
-collision_mask = 7
+collision_mask = 5
 script = ExtResource("1_a5r57")
-gravity_multiplier = 0.2
-SPEED = 1000.0
+
+[node name="WallCheckRight" type="RayCast2D" parent="." unique_id=63535624]
+target_position = Vector2(16, 0)
+
+[node name="WallCheckLeft" type="RayCast2D" parent="." unique_id=1519322066]
+target_position = Vector2(-16, 0)
 
 [node name="VisibilityCastRight" type="ShapeCast2D" parent="." unique_id=1030163155]
 position = Vector2(10, 3)
 shape = SubResource("RectangleShape2D_s8r4a")
-target_position = Vector2(64, 0)
+target_position = Vector2(32, 0)
 collision_mask = 2
 
 [node name="VisibilityCastLeft" type="ShapeCast2D" parent="." unique_id=2073280210]
 position = Vector2(-10, 3)
 shape = SubResource("RectangleShape2D_6wv2l")
-target_position = Vector2(-64, 0)
+target_position = Vector2(-32, 0)
 collision_mask = 2
 
 [node name="JumpCast" type="ShapeCast2D" parent="." unique_id=645117106]
@@ -112,5 +142,4 @@ shape = SubResource("RectangleShape2D_6x4r8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=986303931]
 sprite_frames = SubResource("SpriteFrames_ihebq")
-animation = &"walk"
-frame_progress = 0.3846196
+animation = &"roll"
