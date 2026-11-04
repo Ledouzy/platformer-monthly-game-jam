@@ -40,12 +40,15 @@ func _physics_process(delta: float) -> void:
 		jump_cast.target_position = Vector2(32,jump_cast.position.y)
 		animated_sprite.flip_h = false
 		current_state = states.patrol
+		print("patrol")
 	elif visibility_cast_left.is_colliding():
 		direction = -1
 		jump_cast.target_position = Vector2(-32,jump_cast.position.y)
 		animated_sprite.flip_h = true
 		current_state = states.patrol
+		print("patrol")
 	else:
+		print("idle")
 		current_state = states.idle
 		
 	if jump_cast.is_colliding() and can_jump:
@@ -56,6 +59,8 @@ func _physics_process(delta: float) -> void:
 	
 	if current_state == states.patrol:
 		velocity.x = direction * SPEED * delta
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
 	process_animation()
 	

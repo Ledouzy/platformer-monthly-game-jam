@@ -1,0 +1,155 @@
+[gd_scene format=3 uid="uid://cu7jqbuecerjy"]
+
+[ext_resource type="Script" uid="uid://dbjxun6h83flr" path="res://scripts/characters/plumber.gd" id="1_klhng"]
+[ext_resource type="PackedScene" uid="uid://b8po6fb3rwwg0" path="res://scenes/logic/hurt_box.tscn" id="2_bujpf"]
+[ext_resource type="Texture2D" uid="uid://cbu7umuy3ocvg" path="res://assets/sprites/characters/jack.png" id="3_nldw6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jj0s6"]
+size = Vector2(7, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b14df"]
+size = Vector2(9, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a4xdj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gcuc0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w0ibr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvgip"]
+atlas = ExtResource("3_nldw6")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4iuq"]
+atlas = ExtResource("3_nldw6")
+region = Rect2(16, 224, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qy4y"]
+atlas = ExtResource("3_nldw6")
+region = Rect2(32, 224, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygxk3"]
+atlas = ExtResource("3_nldw6")
+region = Rect2(48, 224, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vos15"]
+atlas = ExtResource("3_nldw6")
+region = Rect2(0, 224, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ic1b4"]
+atlas = ExtResource("3_nldw6")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klhng"]
+atlas = ExtResource("3_nldw6")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bujpf"]
+atlas = ExtResource("3_nldw6")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nldw6"]
+atlas = ExtResource("3_nldw6")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02kyy"]
+atlas = ExtResource("3_nldw6")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rv0xo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvgip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a4iuq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qy4y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ygxk3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vos15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a4iuq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qy4y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ygxk3")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ic1b4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klhng")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bujpf")
+}],
+"loop": 0,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nldw6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02kyy")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Jack" type="CharacterBody2D" unique_id=1541852465]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_klhng")
+gravity_multiplier = 0.8
+SPEED = 2500.0
+JUMP_VELOCITY = -250.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2132310298]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_jj0s6")
+
+[node name="HurtBox" parent="." unique_id=42430512 instance=ExtResource("2_bujpf")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1162100004]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_b14df")
+
+[node name="VisibilityCastRight" type="ShapeCast2D" parent="." unique_id=1030163155]
+position = Vector2(10, 3)
+shape = SubResource("RectangleShape2D_a4xdj")
+target_position = Vector2(64, 0)
+collision_mask = 2
+
+[node name="VisibilityCastLeft" type="ShapeCast2D" parent="." unique_id=2073280210]
+position = Vector2(-10, 3)
+shape = SubResource("RectangleShape2D_gcuc0")
+target_position = Vector2(-64, 0)
+collision_mask = 2
+
+[node name="JumpCast" type="ShapeCast2D" parent="." unique_id=645117106]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_w0ibr")
+target_position = Vector2(32, 0)
+collision_mask = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=986303931]
+sprite_frames = SubResource("SpriteFrames_rv0xo")
+animation = &"walk"
+frame_progress = 0.32033888
