@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://nc2yc5dne64v"]
+
+[ext_resource type="FontFile" uid="uid://5awfie13afbl" path="res://assets/fonts/PixelOperator.ttf" id="1_7iwyi"]
+
+[resource]
+default_base_scale = 1.01
+default_font = ExtResource("1_7iwyi")

@@ -7,8 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dpgwww1mxj8ke" path="res://assets/sprites/background/world1_layer1.png" id="2_ry65h"]
 [ext_resource type="Texture2D" uid="uid://b0f4my4xo58fb" path="res://assets/sprites/background/world1_layer2.png" id="3_d0grl"]
 [ext_resource type="Texture2D" uid="uid://c8v0ytjjbejmc" path="res://assets/sprites/background/world1_layer3.png" id="4_1nvli"]
-[ext_resource type="Script" uid="uid://crdxwec4ilmb1" path="res://scripts/logic/game_ui.gd" id="8_oem7y"]
-[ext_resource type="LabelSettings" uid="uid://djqms57dwnula" path="res://assets/fonts/default_text.tres" id="9_a76di"]
+[ext_resource type="PackedScene" uid="uid://cl1oiedaheosq" path="res://scenes/logic/game_ui.tscn" id="8_oem7y"]
 [ext_resource type="PackedScene" uid="uid://dok5ekvn1exvr" path="res://scenes/objects/spikes.tscn" id="10_a76di"]
 
 [node name="Node2D" type="Node2D" unique_id=1663114360]
@@ -65,72 +64,7 @@ camera_offset = Vector2(48, 0)
 position = Vector2(0, 14)
 MAX_SPEED = 100
 
-[node name="GameUI" type="CanvasLayer" parent="." unique_id=2087276162]
-script = ExtResource("8_oem7y")
-
-[node name="ColorRect" type="ColorRect" parent="GameUI" unique_id=1097064409]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -15.0
-offset_right = 256.0
-grow_vertical = 0
-size_flags_horizontal = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="GameUI" unique_id=395285145]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -16.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="HPLabel2" type="Label" parent="GameUI/HBoxContainer" unique_id=1728483918]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "HP"
-label_settings = ExtResource("9_a76di")
-
-[node name="HPLabel" type="Label" parent="GameUI/HBoxContainer" unique_id=1718555186]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "0"
-label_settings = ExtResource("9_a76di")
-
-[node name="Spacer2" type="Control" parent="GameUI/HBoxContainer" unique_id=655958462]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="CoinsLabel2" type="Label" parent="GameUI/HBoxContainer" unique_id=340270160]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Coins"
-label_settings = ExtResource("9_a76di")
-
-[node name="CoinsLabel" type="Label" parent="GameUI/HBoxContainer" unique_id=225941790]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "0"
-label_settings = ExtResource("9_a76di")
-
-[node name="Spacer" type="Control" parent="GameUI/HBoxContainer" unique_id=1815820482]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="LevelLabel2" type="Label" parent="GameUI/HBoxContainer" unique_id=1435998873]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Level"
-label_settings = ExtResource("9_a76di")
-
-[node name="LevelLabel" type="Label" parent="GameUI/HBoxContainer" unique_id=1501533941]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "1-1"
-label_settings = ExtResource("9_a76di")
+[node name="GameUI" parent="." unique_id=990379204 instance=ExtResource("8_oem7y")]
 
 [node name="SpikePit" type="Node2D" parent="." unique_id=913273929]
 

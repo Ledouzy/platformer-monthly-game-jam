@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://dos4tpe7ri6gt"]
 
+[ext_resource type="Texture2D" uid="uid://bvuxf1ax1g52g" path="res://assets/UI/main_menu_bg.png" id="1_apwh8"]
 [ext_resource type="Script" uid="uid://c47gb5m21471d" path="res://scenes/levels/start.gd" id="1_g3w80"]
+[ext_resource type="Theme" uid="uid://divqfgclw4rhu" path="res://assets/ressources/UI.tres" id="1_tmk6g"]
+[ext_resource type="Texture2D" uid="uid://dsem56170clnb" path="res://assets/UI/logo.png" id="2_0cngb"]
 [ext_resource type="Script" uid="uid://d032dvh12u0ss" path="res://scenes/levels/quit.gd" id="2_k3l6u"]
-
-[sub_resource type="Theme" id="Theme_k3l6u"]
-default_base_scale = 1.01
 
 [node name="Menu" type="Control" unique_id=1140235684]
 layout_mode = 3
@@ -14,39 +14,55 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Background" type="TextureRect" parent="." unique_id=1684330514]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 256.0
+texture = ExtResource("1_apwh8")
+
+[node name="Logo" type="TextureRect" parent="." unique_id=1842639848]
+layout_mode = 1
+offset_top = 16.0
+offset_right = 256.0
+offset_bottom = 56.0
+texture = ExtResource("2_0cngb")
+
 [node name="Start" type="Button" parent="." unique_id=2115417249]
 layout_mode = 0
 offset_left = 4.0
-offset_top = 128.0
+offset_top = 139.0
 offset_right = 50.0
 offset_bottom = 159.0
-theme = SubResource("Theme_k3l6u")
+theme = ExtResource("1_tmk6g")
 text = "Start"
 script = ExtResource("1_g3w80")
 
 [node name="Options" type="Button" parent="." unique_id=1053936774]
 layout_mode = 0
 offset_left = 60.0
-offset_top = 128.0
+offset_top = 139.0
 offset_right = 130.0
 offset_bottom = 159.0
+theme = ExtResource("1_tmk6g")
 text = "Options"
 
 [node name="Credits" type="Button" parent="." unique_id=487424092]
 layout_mode = 0
 offset_left = 136.0
-offset_top = 128.0
+offset_top = 139.0
 offset_right = 199.0
 offset_bottom = 159.0
+theme = ExtResource("1_tmk6g")
 text = "Credits
 "
 
 [node name="Quit" type="Button" parent="." unique_id=725988348]
 layout_mode = 0
 offset_left = 210.0
-offset_top = 128.0
+offset_top = 139.0
 offset_right = 252.0
 offset_bottom = 159.0
+theme = ExtResource("1_tmk6g")
 text = "Quit
 "
 script = ExtResource("2_k3l6u")
