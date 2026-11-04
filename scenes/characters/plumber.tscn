@@ -70,7 +70,15 @@ size = Vector2(7, 13)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6x4r8"]
 size = Vector2(9, 15)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8r4a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wv2l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c8bc1"]
+
 [node name="Plumber" type="CharacterBody2D" unique_id=1541852465]
+collision_layer = 4
+collision_mask = 7
 script = ExtResource("1_gvnxv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=986303931]
@@ -88,14 +96,20 @@ shape = SubResource("RectangleShape2D_ihebq")
 position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_6x4r8")
 
-[node name="VisibilityCastRight" type="RayCast2D" parent="." unique_id=906521287]
+[node name="VisibilityCastRight" type="ShapeCast2D" parent="." unique_id=1030163155]
+position = Vector2(10, 3)
+shape = SubResource("RectangleShape2D_s8r4a")
 target_position = Vector2(64, 0)
 collision_mask = 2
 
-[node name="VisibilityCastLeft" type="RayCast2D" parent="." unique_id=362870124]
+[node name="VisibilityCastLeft" type="ShapeCast2D" parent="." unique_id=2073280210]
+position = Vector2(-10, 3)
+shape = SubResource("RectangleShape2D_6wv2l")
 target_position = Vector2(-64, 0)
 collision_mask = 2
 
-[node name="JumpCast" type="RayCast2D" parent="." unique_id=1155232263]
+[node name="JumpCast" type="ShapeCast2D" parent="." unique_id=645117106]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_c8bc1")
 target_position = Vector2(32, 0)
 collision_mask = 2
