@@ -6,7 +6,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ihebq"]
 atlas = ExtResource("2_hq4x4")
-region = Rect2(0, 239.89299, 256, 16.10701)
+region = Rect2(0, 240, 256, 16)
 
 [node name="GameUI" type="CanvasLayer" unique_id=990379204]
 script = ExtResource("1_6f34v")

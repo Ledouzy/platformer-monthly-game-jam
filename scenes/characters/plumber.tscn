@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://brpnidogfn2dp"]
+
+[ext_resource type="Script" uid="uid://dbjxun6h83flr" path="res://scripts/characters/plumber.gd" id="1_gvnxv"]
+[ext_resource type="Texture2D" uid="uid://bmqfg7h1qmybm" path="res://assets/sprites/characters/plumber.png" id="1_ik1vy"]
+[ext_resource type="PackedScene" uid="uid://b8po6fb3rwwg0" path="res://scenes/logic/hurt_box.tscn" id="2_57mt1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57mt1"]
+atlas = ExtResource("1_ik1vy")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvnxv"]
+atlas = ExtResource("1_ik1vy")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7v5p"]
+atlas = ExtResource("1_ik1vy")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enpaq"]
+atlas = ExtResource("1_ik1vy")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pg2p4"]
+atlas = ExtResource("1_ik1vy")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khlh6"]
+atlas = ExtResource("1_ik1vy")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ihebq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57mt1")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvnxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7v5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enpaq")
+}],
+"loop": 0,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pg2p4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khlh6")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihebq"]
+size = Vector2(7, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6x4r8"]
+size = Vector2(9, 15)
+
+[node name="Plumber" type="CharacterBody2D" unique_id=1541852465]
+script = ExtResource("1_gvnxv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=986303931]
+sprite_frames = SubResource("SpriteFrames_ihebq")
+animation = &"idle"
+frame_progress = 0.47194877
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2132310298]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_ihebq")
+
+[node name="HurtBox" parent="." unique_id=42430512 instance=ExtResource("2_57mt1")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1162100004]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_6x4r8")
+
+[node name="VisibilityCastRight" type="RayCast2D" parent="." unique_id=906521287]
+target_position = Vector2(64, 0)
+collision_mask = 2
+
+[node name="VisibilityCastLeft" type="RayCast2D" parent="." unique_id=362870124]
+target_position = Vector2(-64, 0)
+collision_mask = 2
+
+[node name="JumpCast" type="RayCast2D" parent="." unique_id=1155232263]
+target_position = Vector2(32, 0)
+collision_mask = 2
