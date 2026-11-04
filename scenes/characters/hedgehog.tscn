@@ -32,6 +32,10 @@ region = Rect2(64, 0, 16, 16)
 atlas = ExtResource("3_ad2k8")
 region = Rect2(48, 16, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_bf7gm"]
+atlas = ExtResource("3_ad2k8")
+region = Rect2(64, 16, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_47qfr"]
 atlas = ExtResource("3_ad2k8")
 region = Rect2(48, 0, 16, 16)
@@ -43,6 +47,10 @@ region = Rect2(64, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_lxgdr"]
 atlas = ExtResource("3_ad2k8")
 region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ghhm"]
+atlas = ExtResource("3_ad2k8")
+region = Rect2(64, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a5r57"]
 atlas = ExtResource("3_ad2k8")
@@ -71,10 +79,13 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_skb4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bf7gm")
 }],
 "loop": 1,
 "name": &"jump",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -85,10 +96,13 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lxgdr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ghhm")
 }],
 "loop": 1,
 "name": &"roll",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -142,4 +156,9 @@ shape = SubResource("RectangleShape2D_6x4r8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=986303931]
 sprite_frames = SubResource("SpriteFrames_ihebq")
-animation = &"roll"
+animation = &"jump"
+frame_progress = 0.4376275
+
+[node name="RollTimer" type="Timer" parent="." unique_id=1070304708]
+
+[connection signal="timeout" from="RollTimer" to="." method="_on_roll_timer_timeout"]

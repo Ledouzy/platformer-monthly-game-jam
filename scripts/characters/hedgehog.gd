@@ -5,9 +5,9 @@ extends CharacterBody2D
 @export var SPEED = 10.0
 @export var JUMP_VELOCITY = -100.0
 @export var MAX_SPEED = 50
-@export var ROLL_SPEED = 50
+@export var ROLL_SPEED = 100
 @export var starting_direction = -1
-@export var roll_slowdown = 100
+@export var roll_slowdown = 1
 
 var direction = 1
 enum states {patrol, roll}
@@ -15,6 +15,7 @@ var current_state = states.patrol
 var lock_animation = false
 var can_jump = true
 var rolling = false
+var cant_roll = false
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
@@ -24,6 +25,7 @@ var rolling = false
 @onready var jump_cast: ShapeCast2D = $JumpCast
 @onready var wall_check_right: RayCast2D = $WallCheckRight
 @onready var wall_check_left: RayCast2D = $WallCheckLeft
+@onready var roll_timer: Timer = $RollTimer
 
 
 func _ready() -> void:
@@ -56,6 +58,8 @@ func _physics_process(delta: float) -> void:
 		# stops rolling if hits a wall
 		rolling = false
 		current_state = states.patrol
+		cant_roll = true
+		roll_timer.start()
 	elif wall_check_left.is_colliding():
 		# flip direction after hitting a wall
 		direction = 1
@@ -64,10 +68,12 @@ func _physics_process(delta: float) -> void:
 		# stops rolling if hits a wall
 		rolling = false
 		current_state = states.patrol
+		cant_roll = true
+		roll_timer.start()
 		
-	if visibility_cast_right.is_colliding() and direction == 1:
+	if visibility_cast_right.is_colliding() and direction == 1 and !cant_roll:
 		current_state = states.roll
-	elif visibility_cast_left.is_colliding() and direction == -1:
+	elif visibility_cast_left.is_colliding() and direction == -1 and !cant_roll:
 		current_state = states.roll
 		
 	if jump_cast.is_colliding() and can_jump and current_state != states.roll:
@@ -77,20 +83,21 @@ func _physics_process(delta: float) -> void:
 		lock_animation = true
 	
 	if current_state == states.patrol:
-		print('walking')
 		velocity.x += direction * SPEED * delta
 		if abs(velocity.x) >= MAX_SPEED:
 			velocity.x = move_toward(velocity.x, MAX_SPEED, SPEED*delta)
 	elif current_state == states.roll and !rolling:
-		print('roll start')
 		rolling = true
-		velocity.x += direction * ROLL_SPEED
+		velocity.x = direction * ROLL_SPEED
 		pass
 	elif current_state == states.roll:
-		print('rolling')
-		#velocity.x = move_toward(velocity.x, 0, roll_slowdown)
+		velocity.x = move_toward(velocity.x, 0, roll_slowdown*delta)
 		pass
 	
 	process_animation()
 	
 	move_and_slide()
+
+
+func _on_roll_timer_timeout() -> void:
+	cant_roll = false
