@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://g830xyd7mlaa"]
+
+[ext_resource type="Script" uid="uid://bpijbxa3aek67" path="res://scripts/logic/pickup.gd" id="1_svihs"]
+[ext_resource type="Texture2D" uid="uid://cmeyousucjyxi" path="res://assets/sprites/objects/chicken.png" id="1_u56sr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihebq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svihs"]
+atlas = ExtResource("1_u56sr")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ihebq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svihs")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Chicken" type="Area2D" unique_id=1024261394]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_svihs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=54910218]
+shape = SubResource("RectangleShape2D_ihebq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=275351690]
+sprite_frames = SubResource("SpriteFrames_ihebq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
