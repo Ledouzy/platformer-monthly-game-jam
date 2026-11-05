@@ -120,13 +120,18 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		
 		return
+		
+	# store gravity value
+	var grav = 0
 	
 	# Add the gravity.
 	if not is_on_floor() and !hover:
 		var slowdown_multiplier = 1
 		if Input.is_action_pressed("jump"):
+			print("slow falling")
 			slowdown_multiplier = hover_slowdown_multiplier
 		velocity += get_gravity() * gravity_multiplier * slowdown_multiplier * delta
+		grav = velocity.y
 	if is_on_floor():
 		lock_animation = false
 		cant_hover = false
@@ -183,8 +188,13 @@ func _physics_process(delta: float) -> void:
 		moving_left_anim = false
 			
 	# Rotate in direction
-	if rotate_direction:	
+	if rotate_direction:
 		rotation = rotation + ROTATION_SPEED * rotate_direction * delta
+		print(rotation)
+		if rotation > PI/2:
+			rotation = PI/2
+		elif rotation < -PI/2:
+			rotation = -PI/2
 		#print("new rot: ", rotation)
 
 	# Get the input direction and handle the movement/deceleration.
@@ -200,7 +210,7 @@ func _physics_process(delta: float) -> void:
 		moving_right_anim = false
 		moving_left_anim = false
 	
-	if direction:	
+	if direction:
 		if abs(velocity.x) < MAX_SPEED:
 			#print("rot: ", rotation)
 			#print("velocity: ", Vector2(SPEED * cos(rotation), SPEED * sin(rotation)))
@@ -208,6 +218,9 @@ func _physics_process(delta: float) -> void:
 		# if x value according to current rotation is greater than max speed
 		if sqrt(pow((velocity.x * cos(rotation)),2) + pow((velocity.y * sin(rotation)),2)) > MAX_SPEED:
 			velocity = velocity.normalized() * MAX_SPEED
+		if !hover:
+			var friy = move_toward(velocity.y, grav, abs(SPEED * sin(rotation)) * delta)
+			velocity = Vector2(velocity.x, friy)
 	else:
 		# Calculate the friction/slowdown to not accelerate infinitely
 		var frix = move_toward(velocity.x, 0, abs(SPEED) * delta)

@@ -10,10 +10,16 @@ config_version=5
 
 [application]
 
-config/name="Platformer"
+config/name="Platformer: The platform becomes the platformed"
+config/description="YOU ARE THE PLATFORM
+IN THIS WORLD IT'S PLATFORM OR BE PLATFORMED
+TAKE YOUR REVENGE AGAINST THE PLATFORMERS THAT PLATFORMED YOUR PARENTS"
 run/main_scene="uid://dos4tpe7ri6gt"
 config/features=PackedStringArray("4.7", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(1, 1, 1, 1)
+boot_splash/image="uid://d064ksa5jurs8"
+config/icon="uid://dlhtwksn0b8vp"
+boot_splash/minimum_display_time=2000
 
 [audio]
 
