@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cl1oiedaheosq" path="res://scenes/logic/game_ui.tscn" id="8_f3b2k"]
 [ext_resource type="PackedScene" uid="uid://dok5ekvn1exvr" path="res://scenes/objects/spikes.tscn" id="9_sqrei"]
 [ext_resource type="PackedScene" uid="uid://jn2dt4sgphbj" path="res://scenes/logic/cutscene_trigger.tscn" id="14_b4tpv"]
+[ext_resource type="PackedScene" uid="uid://3r7nw7cbhvce" path="res://scenes/UI/splashscreen.tscn" id="15_hkuam"]
 
 [sub_resource type="Gradient" id="Gradient_sky"]
 colors = PackedColorArray(0.03, 0.03, 0.1, 1, 0.16, 0.08, 0.22, 1)
@@ -28,6 +29,9 @@ size = Vector2(96, 45)
 [node name="FinalLevel" type="Node2D" unique_id=2098401178]
 script = ExtResource("1_hgky1")
 level_id = 2
+
+[node name="Splashscreen" parent="." unique_id=1496988090 instance=ExtResource("15_hkuam")]
+level_name = "Rooftop Duel"
 
 [node name="Background2" type="Node2D" parent="." unique_id=1251299812]
 z_index = -10
