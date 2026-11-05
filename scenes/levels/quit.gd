@@ -13,4 +13,5 @@ func _process(delta: float) -> void:
 
 
 func _on_pressed() -> void:
+	AudioManager.play_ui_confirm()
 	get_tree().quit()

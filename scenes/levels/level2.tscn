@@ -28,6 +28,7 @@ size = Vector2(96, 45)
 
 [node name="FinalLevel" type="Node2D" unique_id=2098401178]
 script = ExtResource("1_hgky1")
+music_name = "Level2"
 level_id = 2
 
 [node name="Splashscreen" parent="." unique_id=1496988090 instance=ExtResource("15_hkuam")]

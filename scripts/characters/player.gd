@@ -53,6 +53,9 @@ func set_dead():
 	velocity = Vector2(0,0)
 	death_timer.start()
 	
+func set_health(hp):
+	health = hp
+	
 func get_health():
 	return health
 	

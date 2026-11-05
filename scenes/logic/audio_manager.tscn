@@ -1,10 +1,15 @@
 [gd_scene format=3 uid="uid://b14o7v5ncnymy"]
 
 [ext_resource type="Script" uid="uid://wht1ke7uro52" path="res://scripts/global/audio_manager.gd" id="1_qxga5"]
+[ext_resource type="AudioStream" uid="uid://4e2t1sis1j04" path="res://assets/audio/sfx/coin.wav" id="2_2hsro"]
 [ext_resource type="AudioStream" uid="uid://dmmdogmteuk0o" path="res://assets/audio/sfx/chicken.wav" id="2_gh300"]
 [ext_resource type="AudioStream" uid="uid://cgt53hmwqpr08" path="res://assets/audio/sfx/jump3.wav" id="2_mcjhh"]
+[ext_resource type="AudioStream" uid="uid://dx737delket1l" path="res://assets/audio/music/platformer music test.wav" id="2_siidf"]
 [ext_resource type="AudioStream" uid="uid://ds0cylppi0epq" path="res://assets/audio/sfx/beep.wav" id="3_gh300"]
+[ext_resource type="AudioStream" uid="uid://co6og8fqooyl5" path="res://assets/audio/music/6.2rd Sanctary.wav" id="3_pc3ia"]
 [ext_resource type="AudioStream" uid="uid://bsvx26jnpblu3" path="res://assets/audio/sfx/death.wav" id="4_4brc7"]
+[ext_resource type="AudioStream" uid="uid://d2lkwi0n26bs2" path="res://assets/audio/sfx/menu_confirm.wav" id="6_bm4fr"]
+[ext_resource type="AudioStream" uid="uid://bba5xdsuf5pxe" path="res://assets/audio/sfx/menu_back.wav" id="7_2hsro"]
 
 [node name="AudioManager" type="Node" unique_id=1923064297 node_paths=PackedStringArray("music", "sounds", "BGS", "ui", "confirm_sfx", "move_sfx", "back_sfx")]
 process_mode = 3
@@ -19,11 +24,18 @@ back_sfx = NodePath("UI/MenuBack")
 
 [node name="Musics" type="Node" parent="." unique_id=1933384434]
 
-[node name="Test" type="AudioStreamPlayer" parent="Musics" unique_id=1114688279]
+[node name="Level" type="AudioStreamPlayer" parent="Musics" unique_id=1114688279]
+stream = ExtResource("2_siidf")
+pitch_scale = 1.1
+
+[node name="Level2" type="AudioStreamPlayer" parent="Musics" unique_id=1248634782]
+stream = ExtResource("3_pc3ia")
+volume_db = -4.0
 
 [node name="Sounds" type="Node" parent="." unique_id=1718301511]
 
 [node name="Test" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1856399907]
+stream = ExtResource("2_2hsro")
 
 [node name="Coin" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1144271001]
 stream = ExtResource("2_gh300")
@@ -48,6 +60,7 @@ bus = &"BGS"
 [node name="UI" type="Node" parent="." unique_id=1757287764]
 
 [node name="MenuConfirm" type="AudioStreamPlayer" parent="UI" unique_id=1837801471]
+stream = ExtResource("6_bm4fr")
 volume_db = -4.0
 bus = &"SFX"
 
@@ -55,6 +68,7 @@ bus = &"SFX"
 bus = &"SFX"
 
 [node name="MenuBack" type="AudioStreamPlayer" parent="UI" unique_id=1583536149]
+stream = ExtResource("7_2hsro")
 volume_db = -4.0
 pitch_scale = 0.9
 bus = &"SFX"
