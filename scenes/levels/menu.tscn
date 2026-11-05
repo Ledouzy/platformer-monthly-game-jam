@@ -118,7 +118,6 @@ text = "Credits
 script = ExtResource("9_6qf5j")
 
 [node name="CreditsScreen" type="RichTextLabel" parent="Credits" unique_id=779167008]
-visible = false
 z_index = 1
 texture_filter = 1
 layout_mode = 0
@@ -131,11 +130,11 @@ theme_override_fonts/bold_font = ExtResource("10_lt4mj")
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 text = "[center][b][color=]Credits :D[/color][/b][/center]
- Programming, Art, SFX
+ Programming, Art, SFX, Music
  						-[color=yellow]Léon[/color] (Lédouzy)
  Level Design	-[color=yellow]Lukas[/color] (yourunclejoe)
 						-[color=yellow]Ren[/color] (MGFs)
- Music				-[color=yellow]Nickey[/color]			
+ Moral Support	-[color=yellow]Nickey[/color]			
 "
 
 [node name="TextureRect" type="TextureRect" parent="Credits/CreditsScreen" unique_id=1230031507]
