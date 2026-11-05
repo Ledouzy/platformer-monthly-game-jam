@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b14o7v5ncnymy"]
 
 [ext_resource type="Script" uid="uid://wht1ke7uro52" path="res://scripts/global/audio_manager.gd" id="1_qxga5"]
-[ext_resource type="AudioStream" uid="uid://4e2t1sis1j04" path="res://assets/audio/sfx/coin.wav" id="2_gh300"]
+[ext_resource type="AudioStream" uid="uid://dmmdogmteuk0o" path="res://assets/audio/sfx/chicken.wav" id="2_gh300"]
 [ext_resource type="AudioStream" uid="uid://cgt53hmwqpr08" path="res://assets/audio/sfx/jump3.wav" id="2_mcjhh"]
 [ext_resource type="AudioStream" uid="uid://ds0cylppi0epq" path="res://assets/audio/sfx/beep.wav" id="3_gh300"]
 [ext_resource type="AudioStream" uid="uid://bsvx26jnpblu3" path="res://assets/audio/sfx/death.wav" id="4_4brc7"]
@@ -27,6 +27,7 @@ back_sfx = NodePath("UI/MenuBack")
 
 [node name="Coin" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1144271001]
 stream = ExtResource("2_gh300")
+volume_db = 12.0
 
 [node name="Jump" type="AudioStreamPlayer2D" parent="Sounds" unique_id=216287980]
 stream = ExtResource("2_mcjhh")
