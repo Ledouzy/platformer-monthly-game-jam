@@ -11,4 +11,5 @@ func _process(delta: float) -> void:
 
 
 func _on_pressed() -> void:
+	AudioManager.play_ui_confirm()
 	get_tree().change_scene_to_file("res://scenes/levels/level0.tscn")

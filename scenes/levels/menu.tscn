@@ -2,16 +2,18 @@
 
 [ext_resource type="Texture2D" uid="uid://bvuxf1ax1g52g" path="res://assets/UI/main_menu_bg.png" id="1_apwh8"]
 [ext_resource type="Script" uid="uid://c47gb5m21471d" path="res://scenes/levels/start.gd" id="1_g3w80"]
+[ext_resource type="Script" uid="uid://c6mmeeu20nopd" path="res://scenes/levels/menu.gd" id="1_swjeh"]
 [ext_resource type="Theme" uid="uid://divqfgclw4rhu" path="res://assets/ressources/UI.tres" id="1_tmk6g"]
 [ext_resource type="Texture2D" uid="uid://dsem56170clnb" path="res://assets/UI/logo.png" id="2_0cngb"]
 [ext_resource type="Script" uid="uid://d032dvh12u0ss" path="res://scenes/levels/quit.gd" id="2_k3l6u"]
 [ext_resource type="Script" uid="uid://coxsk4c86wmvk" path="res://scenes/levels/full_screen.gd" id="5_0cngb"]
 [ext_resource type="Script" uid="uid://d0v864ybiis6t" path="res://scenes/levels/options.gd" id="5_w6ftq"]
 [ext_resource type="Script" uid="uid://cd1ht4qeqanrm" path="res://scenes/levels/audio.gd" id="6_jn8sx"]
+[ext_resource type="Theme" uid="uid://u3py1nu5dm5d" path="res://assets/ressources/UI_no_box.tres" id="7_dnrjr"]
 [ext_resource type="Script" uid="uid://ba76puonl6fjf" path="res://scenes/levels/credits.gd" id="9_6qf5j"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_5g1v2"]
-font_size = 8
+[ext_resource type="LabelSettings" uid="uid://djqms57dwnula" path="res://assets/fonts/default_text.tres" id="9_varmo"]
+[ext_resource type="FontFile" uid="uid://5awfie13afbl" path="res://assets/fonts/PixelOperator.ttf" id="10_lt4mj"]
+[ext_resource type="Texture2D" uid="uid://bp4be0jpt2pkb" path="res://assets/UI/box_full.png" id="11_dexxl"]
 
 [node name="Menu" type="Control" unique_id=1140235684]
 layout_mode = 3
@@ -20,14 +22,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_swjeh")
 
 [node name="Background" type="TextureRect" parent="." unique_id=1684330514]
+z_index = -10
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 256.0
 texture = ExtResource("1_apwh8")
 
 [node name="Logo" type="TextureRect" parent="." unique_id=1842639848]
+z_index = -1
 layout_mode = 1
 offset_top = 16.0
 offset_right = 256.0
@@ -74,6 +79,7 @@ size_flags_vertical = 3
 [node name="Audio" type="HSlider" parent="Options/OptionsMenu" unique_id=1134991976]
 texture_filter = 1
 layout_mode = 2
+theme = ExtResource("7_dnrjr")
 max_value = 1.0
 step = 0.1
 value = 1.0
@@ -81,12 +87,12 @@ script = ExtResource("6_jn8sx")
 
 [node name="Label" type="Label" parent="Options/OptionsMenu/Audio" unique_id=170817225]
 layout_mode = 0
-offset_left = 45.0
-offset_top = 2.0
-offset_right = 103.0
-offset_bottom = 14.0
+offset_left = 46.0
+offset_top = -5.0
+offset_right = 104.0
+offset_bottom = 11.0
 text = "Audio"
-label_settings = SubResource("LabelSettings_5g1v2")
+label_settings = ExtResource("9_varmo")
 horizontal_alignment = 1
 
 [node name="Quit" type="Button" parent="." unique_id=725988348]
@@ -113,25 +119,34 @@ script = ExtResource("9_6qf5j")
 
 [node name="CreditsScreen" type="RichTextLabel" parent="Credits" unique_id=779167008]
 visible = false
+z_index = 1
 texture_filter = 1
 layout_mode = 0
 offset_left = -136.0
 offset_top = -139.0
 offset_right = 120.0
-theme_override_font_sizes/normal_font_size = 10
+offset_bottom = 7.0
+theme_override_fonts/normal_font = ExtResource("10_lt4mj")
+theme_override_fonts/bold_font = ExtResource("10_lt4mj")
+theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
-text = "[center][b][color=red]Credits :D[/color][/b][/center]
- Programming
- Art
- SFX						-[color=yellow]Léon[/color] (Lédouzy)
-
+text = "[center][b][color=]Credits :D[/color][/b][/center]
+ Programming, Art, SFX
+ 						-[color=yellow]Léon[/color] (Lédouzy)
  Level Design	-[color=yellow]Lukas[/color] (yourunclejoe)
-							-[color=yellow]Ren[/color] (MGFs)
-
-Music					-[color=yellow]Nickey[/color]			
+						-[color=yellow]Ren[/color] (MGFs)
+ Music				-[color=yellow]Nickey[/color]			
 "
 
+[node name="TextureRect" type="TextureRect" parent="Credits/CreditsScreen" unique_id=1230031507]
+z_index = -1
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 160.0
+texture = ExtResource("11_dexxl")
+
 [node name="Black" type="ColorRect" parent="Credits/CreditsScreen" unique_id=1756074057]
+visible = false
 show_behind_parent = true
 layout_mode = 0
 offset_right = 256.0
