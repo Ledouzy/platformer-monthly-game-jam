@@ -13,6 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://cl1oiedaheosq" path="res://scenes/logic/game_ui.tscn" id="8_oem7y"]
 [ext_resource type="PackedScene" uid="uid://dok5ekvn1exvr" path="res://scenes/objects/spikes.tscn" id="10_a76di"]
 [ext_resource type="PackedScene" uid="uid://bxywk3cyha3sj" path="res://scenes/logic/level_transition.tscn" id="12_7s2gi"]
+[ext_resource type="PackedScene" uid="uid://g830xyd7mlaa" path="res://scenes/objects/chicken.tscn" id="14_1t5oo"]
+[ext_resource type="PackedScene" uid="uid://brpnidogfn2dp" path="res://scenes/characters/plumber.tscn" id="15_3asx1"]
+[ext_resource type="PackedScene" uid="uid://r2831cnb74l8" path="res://scenes/characters/hedgehog.tscn" id="16_ng1gw"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6x4r8"]
 normal = Vector2(-1, 0)
@@ -104,6 +107,7 @@ position = Vector2(0, 14)
 MAX_SPEED = 100
 
 [node name="GameUI" parent="." unique_id=990379204 instance=ExtResource("8_oem7y")]
+unique_name_in_owner = true
 
 [node name="SpikePit" type="Node2D" parent="." unique_id=913273929]
 
@@ -154,3 +158,184 @@ next_stage_number = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="level_transition" unique_id=546230961]
 position = Vector2(-95, 40)
 shape = SubResource("WorldBoundaryShape2D_6x4r8")
+
+[node name="Chickens" type="Node2D" parent="." unique_id=2132357490]
+
+[node name="Chicken" parent="Chickens" unique_id=1024261394 instance=ExtResource("14_1t5oo")]
+position = Vector2(172, -11)
+
+[node name="Chicken2" parent="Chickens" unique_id=1538280734 instance=ExtResource("14_1t5oo")]
+position = Vector2(172, -39)
+
+[node name="Chicken3" parent="Chickens" unique_id=1992731635 instance=ExtResource("14_1t5oo")]
+position = Vector2(406.18005, -25.896065)
+
+[node name="Chicken4" parent="Chickens" unique_id=304909835 instance=ExtResource("14_1t5oo")]
+position = Vector2(422.18005, -57.896065)
+
+[node name="Chicken5" parent="Chickens" unique_id=930878943 instance=ExtResource("14_1t5oo")]
+position = Vector2(439.18005, -89.896065)
+
+[node name="Chicken6" parent="Chickens" unique_id=261101996 instance=ExtResource("14_1t5oo")]
+position = Vector2(768.5635, -65.81505)
+
+[node name="Chicken7" parent="Chickens" unique_id=1018583937 instance=ExtResource("14_1t5oo")]
+position = Vector2(1063.5375, 71.171844)
+
+[node name="Chicken8" parent="Chickens" unique_id=519915775 instance=ExtResource("14_1t5oo")]
+position = Vector2(1063.5375, 54.171844)
+
+[node name="Chicken9" parent="Chickens" unique_id=41916674 instance=ExtResource("14_1t5oo")]
+position = Vector2(1083.5375, 54.171844)
+
+[node name="Chicken10" parent="Chickens" unique_id=1233392910 instance=ExtResource("14_1t5oo")]
+position = Vector2(1103.5375, 54.171844)
+
+[node name="Chicken11" parent="Chickens" unique_id=1282527174 instance=ExtResource("14_1t5oo")]
+position = Vector2(1103.5375, 71.171844)
+
+[node name="Chicken12" parent="Chickens" unique_id=1181871950 instance=ExtResource("14_1t5oo")]
+position = Vector2(1541.1523, 40.842857)
+
+[node name="Chicken13" parent="Chickens" unique_id=1034605267 instance=ExtResource("14_1t5oo")]
+position = Vector2(1573.1523, 40.842857)
+
+[node name="Chicken14" parent="Chickens" unique_id=2047505181 instance=ExtResource("14_1t5oo")]
+position = Vector2(1606.1523, 40.842857)
+
+[node name="Chicken15" parent="Chickens" unique_id=1051130038 instance=ExtResource("14_1t5oo")]
+position = Vector2(1638.1523, 40.842857)
+
+[node name="Chicken16" parent="Chickens" unique_id=1256754994 instance=ExtResource("14_1t5oo")]
+position = Vector2(1669.1523, 40.842857)
+
+[node name="Chicken17" parent="Chickens" unique_id=1005253792 instance=ExtResource("14_1t5oo")]
+position = Vector2(1250.0518, -65.58533)
+
+[node name="Chicken18" parent="Chickens" unique_id=706832552 instance=ExtResource("14_1t5oo")]
+position = Vector2(1301.3676, -89.51117)
+
+[node name="Chicken19" parent="Chickens" unique_id=947440598 instance=ExtResource("14_1t5oo")]
+position = Vector2(1397.4684, -89.70973)
+
+[node name="Chicken20" parent="Chickens" unique_id=333300609 instance=ExtResource("14_1t5oo")]
+position = Vector2(1509.8966, -89.91069)
+
+[node name="Chicken21" parent="Chickens" unique_id=848348009 instance=ExtResource("14_1t5oo")]
+position = Vector2(1780.727, -126.76227)
+
+[node name="Chicken22" parent="Chickens" unique_id=1197214914 instance=ExtResource("14_1t5oo")]
+position = Vector2(1927.575, -127.079254)
+
+[node name="Chicken23" parent="Chickens" unique_id=267046070 instance=ExtResource("14_1t5oo")]
+position = Vector2(1853.7363, -90.16066)
+
+[node name="Chicken24" parent="Chickens" unique_id=1900029577 instance=ExtResource("14_1t5oo")]
+position = Vector2(2227.4087, -90.75874)
+
+[node name="Chicken25" parent="Chickens" unique_id=857128968 instance=ExtResource("14_1t5oo")]
+position = Vector2(2617.555, -74.681305)
+
+[node name="Chicken26" parent="Chickens" unique_id=1186624626 instance=ExtResource("14_1t5oo")]
+position = Vector2(2638.555, -74.681305)
+
+[node name="Chicken27" parent="Chickens" unique_id=1123347013 instance=ExtResource("14_1t5oo")]
+position = Vector2(2659.555, -74.681305)
+
+[node name="Chicken28" parent="Chickens" unique_id=829922118 instance=ExtResource("14_1t5oo")]
+position = Vector2(2680.555, -74.681305)
+
+[node name="Chicken29" parent="Chickens" unique_id=250045702 instance=ExtResource("14_1t5oo")]
+position = Vector2(2679.555, -95.681305)
+
+[node name="Chicken30" parent="Chickens" unique_id=50981200 instance=ExtResource("14_1t5oo")]
+position = Vector2(2658.555, -95.681305)
+
+[node name="Chicken31" parent="Chickens" unique_id=76592229 instance=ExtResource("14_1t5oo")]
+position = Vector2(2638.555, -95.681305)
+
+[node name="Chicken32" parent="Chickens" unique_id=1378268944 instance=ExtResource("14_1t5oo")]
+position = Vector2(2617.555, -95.681305)
+
+[node name="Chicken33" parent="Chickens" unique_id=625894672 instance=ExtResource("14_1t5oo")]
+position = Vector2(2630.6628, -56.56346)
+
+[node name="Chicken34" parent="Chickens" unique_id=358349457 instance=ExtResource("14_1t5oo")]
+position = Vector2(2664.6628, -56.56346)
+
+[node name="Chicken35" parent="Chickens" unique_id=489181710 instance=ExtResource("14_1t5oo")]
+position = Vector2(2648.957, -8.724731)
+
+[node name="Chicken36" parent="Chickens" unique_id=1407737793 instance=ExtResource("14_1t5oo")]
+position = Vector2(2648.3196, 54.275917)
+
+[node name="Chicken37" parent="Chickens" unique_id=760750223 instance=ExtResource("14_1t5oo")]
+position = Vector2(2584.2205, 22.59916)
+
+[node name="Chicken38" parent="Chickens" unique_id=431577692 instance=ExtResource("14_1t5oo")]
+position = Vector2(2714.516, 20.917793)
+
+[node name="Chicken39" parent="Chickens" unique_id=47540181 instance=ExtResource("14_1t5oo")]
+position = Vector2(2843.4863, 53.138626)
+
+[node name="Chicken40" parent="Chickens" unique_id=1058408452 instance=ExtResource("14_1t5oo")]
+position = Vector2(2868.4863, 53.138626)
+
+[node name="Chicken41" parent="Chickens" unique_id=1143498410 instance=ExtResource("14_1t5oo")]
+position = Vector2(2895.4863, 53.138626)
+
+[node name="Chicken42" parent="Chickens" unique_id=670461336 instance=ExtResource("14_1t5oo")]
+position = Vector2(2976.4404, 23.016632)
+
+[node name="Chicken43" parent="Chickens" unique_id=1759855225 instance=ExtResource("14_1t5oo")]
+position = Vector2(3040.5505, -11.038391)
+
+[node name="Chicken44" parent="Chickens" unique_id=1887474215 instance=ExtResource("14_1t5oo")]
+position = Vector2(3102.864, -43.2274)
+
+[node name="Chicken45" parent="Chickens" unique_id=1872722167 instance=ExtResource("14_1t5oo")]
+position = Vector2(3263.3423, -74.617325)
+
+[node name="Chicken46" parent="Chickens" unique_id=406337480 instance=ExtResource("14_1t5oo")]
+position = Vector2(1083.9479, 71.51199)
+
+[node name="Chicken47" parent="Chickens" unique_id=2013915050 instance=ExtResource("14_1t5oo")]
+position = Vector2(1399.8081, -233.72455)
+
+[node name="Chicken48" parent="Chickens" unique_id=288699362 instance=ExtResource("14_1t5oo")]
+position = Vector2(3350.3633, -5.534096)
+
+[node name="Chicken49" parent="Chickens" unique_id=320054277 instance=ExtResource("14_1t5oo")]
+position = Vector2(3350.3633, 14.465904)
+
+[node name="Chicken50" parent="Chickens" unique_id=772076755 instance=ExtResource("14_1t5oo")]
+position = Vector2(3350.7712, 34.50731)
+
+[node name="Chicken51" parent="Chickens" unique_id=552958381 instance=ExtResource("14_1t5oo")]
+position = Vector2(3350.7712, 55.50731)
+
+[node name="Chicken52" parent="Chickens" unique_id=22604498 instance=ExtResource("14_1t5oo")]
+position = Vector2(3329.7712, 55.50731)
+
+[node name="Chicken53" parent="Chickens" unique_id=1797304066 instance=ExtResource("14_1t5oo")]
+position = Vector2(3329.7712, 35.50731)
+
+[node name="Chicken54" parent="Chickens" unique_id=938432903 instance=ExtResource("14_1t5oo")]
+position = Vector2(3329.7712, 14.507309)
+
+[node name="Chicken55" parent="Chickens" unique_id=1558234899 instance=ExtResource("14_1t5oo")]
+position = Vector2(3329.7712, -5.492691)
+
+[node name="Enemies" type="Node2D" parent="." unique_id=867189838]
+
+[node name="Plumber" parent="Enemies" unique_id=1541852465 instance=ExtResource("15_3asx1")]
+position = Vector2(2024.0408, 56.60048)
+
+[node name="Plumber2" parent="Enemies" unique_id=1810786947 instance=ExtResource("15_3asx1")]
+position = Vector2(3271.5276, 56.51619)
+
+[node name="Hedgehog" parent="Enemies" unique_id=1667885745 instance=ExtResource("16_ng1gw")]
+position = Vector2(1610.4186, 118.33383)
+
+[node name="Hedgehog2" parent="Enemies" unique_id=1437714465 instance=ExtResource("16_ng1gw")]
+position = Vector2(777.2853, 35.55681)
