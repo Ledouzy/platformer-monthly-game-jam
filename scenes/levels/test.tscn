@@ -12,10 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cl1oiedaheosq" path="res://scenes/logic/game_ui.tscn" id="8_f5esd"]
 [ext_resource type="TileSet" uid="uid://c3qkd0t3hoiln" path="res://assets/tilemaps/placeholder_tileset.tres" id="10_53yew"]
 [ext_resource type="PackedScene" uid="uid://g830xyd7mlaa" path="res://scenes/objects/chicken.tscn" id="12_wu1oq"]
-[ext_resource type="PackedScene" uid="uid://jn2dt4sgphbj" path="res://scenes/logic/cutscene_trigger.tscn" id="13_k43ob"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihebq"]
-size = Vector2(20, 45)
+[ext_resource type="PackedScene" uid="uid://r2831cnb74l8" path="res://scenes/characters/hedgehog.tscn" id="13_k43ob"]
 
 [node name="Test" type="Node2D" unique_id=1663114360]
 script = ExtResource("1_5tpx0")
@@ -107,11 +104,5 @@ collision_enabled = false
 [node name="Chicken" parent="." unique_id=1024261394 instance=ExtResource("12_wu1oq")]
 position = Vector2(30, 8)
 
-[node name="CutsceneTrigger" parent="." unique_id=939984362 instance=ExtResource("13_k43ob")]
-cutscene_name = "ending"
-next_scene = "menu"
-cutscene_flag = "ending"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTrigger" unique_id=2091729037]
-position = Vector2(152, -2.5)
-shape = SubResource("RectangleShape2D_ihebq")
+[node name="Hedgehog" parent="." unique_id=1541852465 instance=ExtResource("13_k43ob")]
+position = Vector2(200, -9)

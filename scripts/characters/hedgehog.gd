@@ -78,6 +78,7 @@ func _physics_process(delta: float) -> void:
 		
 	if jump_cast.is_colliding() and can_jump and current_state != states.roll:
 		animated_sprite.play("jump")
+		play_sfx("HedgehogJump")
 		velocity.y = JUMP_VELOCITY
 		can_jump = false
 		lock_animation = true
@@ -87,6 +88,7 @@ func _physics_process(delta: float) -> void:
 		if abs(velocity.x) >= MAX_SPEED:
 			velocity.x = move_toward(velocity.x, MAX_SPEED, SPEED*delta)
 	elif current_state == states.roll and !rolling:
+		play_sfx("Spin")
 		rolling = true
 		velocity.x = direction * ROLL_SPEED
 		pass
@@ -97,6 +99,11 @@ func _physics_process(delta: float) -> void:
 	process_animation()
 	
 	move_and_slide()
+	
+	
+# play a sound by calling the audio manager
+func play_sfx(sfx_name):
+	AudioManager.play_sfx(sfx_name, 0, self.position)
 
 
 func _on_roll_timer_timeout() -> void:

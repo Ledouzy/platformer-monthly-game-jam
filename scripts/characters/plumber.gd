@@ -58,6 +58,7 @@ func _physics_process(delta: float) -> void:
 		
 	if jump_cast.is_colliding() and can_jump:
 		animated_sprite.play("jump")
+		play_sfx("PlumberJump")
 		velocity.y = JUMP_VELOCITY
 		can_jump = false
 		lock_animation = true
@@ -70,3 +71,8 @@ func _physics_process(delta: float) -> void:
 	process_animation()
 	
 	move_and_slide()
+	
+# play a sound by calling the audio manager
+func play_sfx(sfx_name):
+	AudioManager.play_sfx(sfx_name, 0, self.position)
+	

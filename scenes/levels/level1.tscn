@@ -88,6 +88,7 @@ repeat_size = Vector2(256, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D4" unique_id=412804163]
+position = Vector2(0, 7)
 texture = ExtResource("6_gvm5i")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=294991514]

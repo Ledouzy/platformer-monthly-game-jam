@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cu7jqbuecerjy"]
 
-[ext_resource type="Script" uid="uid://dbjxun6h83flr" path="res://scripts/characters/plumber.gd" id="1_klhng"]
+[ext_resource type="Script" uid="uid://pp4prc48yf7q" path="res://scripts/characters/jack.gd" id="1_ic1b4"]
 [ext_resource type="PackedScene" uid="uid://b8po6fb3rwwg0" path="res://scenes/logic/hurt_box.tscn" id="2_bujpf"]
 [ext_resource type="Texture2D" uid="uid://cbu7umuy3ocvg" path="res://assets/sprites/characters/jack.png" id="3_nldw6"]
 
@@ -116,7 +116,7 @@ animations = [{
 [node name="Jack" type="CharacterBody2D" unique_id=1541852465]
 collision_layer = 4
 collision_mask = 5
-script = ExtResource("1_klhng")
+script = ExtResource("1_ic1b4")
 gravity_multiplier = 0.8
 SPEED = 2500.0
 JUMP_VELOCITY = -250.0

@@ -8,8 +8,10 @@
 [ext_resource type="AudioStream" uid="uid://ds0cylppi0epq" path="res://assets/audio/sfx/beep.wav" id="3_gh300"]
 [ext_resource type="AudioStream" uid="uid://co6og8fqooyl5" path="res://assets/audio/music/6.2rd Sanctary.wav" id="3_pc3ia"]
 [ext_resource type="AudioStream" uid="uid://bsvx26jnpblu3" path="res://assets/audio/sfx/death.wav" id="4_4brc7"]
+[ext_resource type="AudioStream" uid="uid://ce8p5w73dddcb" path="res://assets/audio/sfx/spin2.wav" id="5_y3xji"]
 [ext_resource type="AudioStream" uid="uid://d2lkwi0n26bs2" path="res://assets/audio/sfx/menu_confirm.wav" id="6_bm4fr"]
 [ext_resource type="AudioStream" uid="uid://bba5xdsuf5pxe" path="res://assets/audio/sfx/menu_back.wav" id="7_2hsro"]
+[ext_resource type="AudioStream" uid="uid://b774th5mx21w5" path="res://assets/audio/sfx/dogi.wav" id="7_hhrbd"]
 
 [node name="AudioManager" type="Node" unique_id=1923064297 node_paths=PackedStringArray("music", "sounds", "BGS", "ui", "confirm_sfx", "move_sfx", "back_sfx")]
 process_mode = 3
@@ -30,12 +32,16 @@ pitch_scale = 1.1
 
 [node name="Level2" type="AudioStreamPlayer" parent="Musics" unique_id=1248634782]
 stream = ExtResource("3_pc3ia")
-volume_db = -4.0
+volume_db = -6.0
 
 [node name="Sounds" type="Node" parent="." unique_id=1718301511]
 
 [node name="Test" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1856399907]
 stream = ExtResource("2_2hsro")
+
+[node name="Spin" type="AudioStreamPlayer2D" parent="Sounds" unique_id=191119796]
+stream = ExtResource("5_y3xji")
+volume_db = 8.0
 
 [node name="Coin" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1144271001]
 stream = ExtResource("2_gh300")
@@ -44,6 +50,17 @@ volume_db = 12.0
 [node name="Jump" type="AudioStreamPlayer2D" parent="Sounds" unique_id=216287980]
 stream = ExtResource("2_mcjhh")
 pitch_scale = 1.4
+
+[node name="PlumberJump" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1554755778]
+stream = ExtResource("2_mcjhh")
+pitch_scale = 1.8
+
+[node name="HedgehogJump" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1063684193]
+stream = ExtResource("2_mcjhh")
+pitch_scale = 0.9
+
+[node name="JackJump" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1790796721]
+stream = ExtResource("7_hhrbd")
 
 [node name="Damage" type="AudioStreamPlayer2D" parent="Sounds" unique_id=970881997]
 stream = ExtResource("3_gh300")
