@@ -5,6 +5,13 @@
 [ext_resource type="Theme" uid="uid://divqfgclw4rhu" path="res://assets/ressources/UI.tres" id="1_tmk6g"]
 [ext_resource type="Texture2D" uid="uid://dsem56170clnb" path="res://assets/UI/logo.png" id="2_0cngb"]
 [ext_resource type="Script" uid="uid://d032dvh12u0ss" path="res://scenes/levels/quit.gd" id="2_k3l6u"]
+[ext_resource type="Script" uid="uid://coxsk4c86wmvk" path="res://scenes/levels/full_screen.gd" id="5_0cngb"]
+[ext_resource type="Script" uid="uid://d0v864ybiis6t" path="res://scenes/levels/options.gd" id="5_w6ftq"]
+[ext_resource type="Script" uid="uid://cd1ht4qeqanrm" path="res://scenes/levels/audio.gd" id="6_jn8sx"]
+[ext_resource type="Script" uid="uid://ba76puonl6fjf" path="res://scenes/levels/credits.gd" id="9_6qf5j"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5g1v2"]
+font_size = 8
 
 [node name="Menu" type="Control" unique_id=1140235684]
 layout_mode = 3
@@ -45,16 +52,42 @@ offset_right = 130.0
 offset_bottom = 159.0
 theme = ExtResource("1_tmk6g")
 text = "Options"
+script = ExtResource("5_w6ftq")
 
-[node name="Credits" type="Button" parent="." unique_id=487424092]
+[node name="OptionsMenu" type="VBoxContainer" parent="Options" unique_id=482762620]
+visible = false
 layout_mode = 0
-offset_left = 136.0
-offset_top = 139.0
-offset_right = 199.0
-offset_bottom = 159.0
-theme = ExtResource("1_tmk6g")
-text = "Credits
-"
+offset_left = -13.0
+offset_top = -83.0
+offset_right = 137.0
+offset_bottom = -20.0
+
+[node name="FullScreen" type="Button" parent="Options/OptionsMenu" unique_id=594969051]
+layout_mode = 2
+text = "Full Screen"
+script = ExtResource("5_0cngb")
+
+[node name="HSeparator" type="HSeparator" parent="Options/OptionsMenu" unique_id=1369371151]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Audio" type="HSlider" parent="Options/OptionsMenu" unique_id=1134991976]
+texture_filter = 1
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+value = 1.0
+script = ExtResource("6_jn8sx")
+
+[node name="Label" type="Label" parent="Options/OptionsMenu/Audio" unique_id=170817225]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 2.0
+offset_right = 103.0
+offset_bottom = 14.0
+text = "Audio"
+label_settings = SubResource("LabelSettings_5g1v2")
+horizontal_alignment = 1
 
 [node name="Quit" type="Button" parent="." unique_id=725988348]
 layout_mode = 0
@@ -67,5 +100,47 @@ text = "Quit
 "
 script = ExtResource("2_k3l6u")
 
+[node name="Credits" type="Button" parent="." unique_id=487424092]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 139.0
+offset_right = 199.0
+offset_bottom = 159.0
+theme = ExtResource("1_tmk6g")
+text = "Credits
+"
+script = ExtResource("9_6qf5j")
+
+[node name="CreditsScreen" type="RichTextLabel" parent="Credits" unique_id=779167008]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = -136.0
+offset_top = -139.0
+offset_right = 120.0
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "[center][b][color=red]Credits :D[/color][/b][/center]
+ Programming
+ Art
+ SFX						-[color=yellow]Léon[/color] (Lédouzy)
+
+ Level Design	-[color=yellow]Lukas[/color] (yourunclejoe)
+							-[color=yellow]Ren[/color] (MGFs)
+
+Music					-[color=yellow]Nickey[/color]			
+"
+
+[node name="Black" type="ColorRect" parent="Credits/CreditsScreen" unique_id=1756074057]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 139.0
+color = Color(0, 0, 0, 1)
+
 [connection signal="pressed" from="Start" to="Start" method="_on_pressed"]
+[connection signal="pressed" from="Options" to="Options" method="_on_pressed"]
+[connection signal="pressed" from="Options/OptionsMenu/FullScreen" to="Options/OptionsMenu/FullScreen" method="_on_pressed"]
+[connection signal="value_changed" from="Options/OptionsMenu/Audio" to="Options/OptionsMenu/Audio" method="_on_value_changed"]
 [connection signal="pressed" from="Quit" to="Quit" method="_on_pressed"]
+[connection signal="pressed" from="Credits" to="Credits" method="_on_pressed"]
