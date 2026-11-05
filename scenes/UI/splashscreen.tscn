@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://3r7nw7cbhvce"]
+
+[ext_resource type="Script" uid="uid://c12aufgmv1ucm" path="res://scripts/UI/splashscreen.gd" id="1_3nor1"]
+[ext_resource type="Texture2D" uid="uid://bvuxf1ax1g52g" path="res://assets/UI/main_menu_bg.png" id="2_1aeo3"]
+[ext_resource type="Texture2D" uid="uid://b0h4wss7k5hph" path="res://assets/UI/splash_overlay.png" id="3_1aeo3"]
+[ext_resource type="LabelSettings" uid="uid://djqms57dwnula" path="res://assets/fonts/default_text.tres" id="4_jnsda"]
+
+[node name="Node2D" type="Node2D" unique_id=1496988090]
+script = ExtResource("1_3nor1")
+world_name = "World 1: Platform City"
+level_name = "Level 1-1"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1879442811]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=1636939535]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_1aeo3")
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer" unique_id=1763504242]
+offset_right = 192.0
+offset_bottom = 64.0
+texture = ExtResource("3_1aeo3")
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1945740290]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 74.0
+offset_bottom = 25.0
+text = "WORLD 1
+LEVEL 1-1"
+label_settings = ExtResource("4_jnsda")

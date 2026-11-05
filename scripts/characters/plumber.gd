@@ -4,6 +4,7 @@ extends CharacterBody2D
 
 @export var SPEED = 2000.0
 @export var JUMP_VELOCITY = -200.0
+@export var starting_direction = -1
 
 var direction = 1
 enum states {idle, patrol}
@@ -19,6 +20,12 @@ var can_jump = true
 @onready var jump_cast: ShapeCast2D = $JumpCast
 
 
+func _ready() -> void:
+	direction = starting_direction
+	if direction < 0:
+		animated_sprite.flip_h = true
+		
+
 func process_animation():
 	if lock_animation:
 		return
@@ -26,6 +33,7 @@ func process_animation():
 		animated_sprite.play("walk")
 	else:
 		animated_sprite.play("idle")
+
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
