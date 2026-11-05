@@ -5,12 +5,14 @@ extends CharacterBody2D
 @export var SPEED = 2000.0
 @export var JUMP_VELOCITY = -200.0
 @export var starting_direction = -1
+@export var jump_timer: Timer
 
 var direction = 1
 enum states {idle, patrol}
 var current_state = states.idle
 var lock_animation = false
 var can_jump = true
+var jump_timeout = false
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
@@ -40,7 +42,8 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * gravity_multiplier * delta
 	else:
-		can_jump = true
+		if jump_timeout:
+			can_jump = true
 		lock_animation = false
 		
 	if visibility_cast_right.is_colliding():
@@ -57,6 +60,8 @@ func _physics_process(delta: float) -> void:
 		current_state = states.idle
 		
 	if jump_cast.is_colliding() and can_jump:
+		jump_timeout = false
+		jump_timer.start()
 		animated_sprite.play("jump")
 		play_sfx("JackJump")
 		velocity.y = JUMP_VELOCITY
@@ -76,3 +81,7 @@ func _physics_process(delta: float) -> void:
 func play_sfx(sfx_name):
 	AudioManager.play_sfx(sfx_name, 0, self.position)
 	
+
+
+func _on_jump_timer_timeout() -> void:
+	jump_timeout = true

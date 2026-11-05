@@ -116,10 +116,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Hedgehog" type="CharacterBody2D" unique_id=1541852465]
+[node name="Hedgehog" type="CharacterBody2D" unique_id=1541852465 node_paths=PackedStringArray("jump_timer")]
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_a5r57")
+jump_timer = NodePath("JumpTimer")
 
 [node name="WallCheckRight" type="RayCast2D" parent="." unique_id=63535624]
 target_position = Vector2(16, 0)
@@ -161,4 +162,8 @@ frame_progress = 0.4376275
 
 [node name="RollTimer" type="Timer" parent="." unique_id=1070304708]
 
+[node name="JumpTimer" type="Timer" parent="." unique_id=2078741584]
+wait_time = 2.0
+
 [connection signal="timeout" from="RollTimer" to="." method="_on_roll_timer_timeout"]
+[connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]

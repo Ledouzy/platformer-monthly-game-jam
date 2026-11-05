@@ -113,13 +113,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Jack" type="CharacterBody2D" unique_id=1541852465]
+[node name="Jack" type="CharacterBody2D" unique_id=1541852465 node_paths=PackedStringArray("jump_timer")]
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_ic1b4")
 gravity_multiplier = 0.8
 SPEED = 2500.0
 JUMP_VELOCITY = -250.0
+jump_timer = NodePath("Timer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2132310298]
 position = Vector2(0.5, 0.5)
@@ -153,3 +154,5 @@ collision_mask = 2
 sprite_frames = SubResource("SpriteFrames_rv0xo")
 animation = &"walk"
 frame_progress = 0.32033888
+
+[node name="Timer" type="Timer" parent="." unique_id=1342600218]

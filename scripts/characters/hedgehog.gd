@@ -8,6 +8,8 @@ extends CharacterBody2D
 @export var ROLL_SPEED = 100
 @export var starting_direction = -1
 @export var roll_slowdown = 1
+@export var jump_timer: Timer
+
 
 var direction = 1
 enum states {patrol, roll}
@@ -16,6 +18,7 @@ var lock_animation = false
 var can_jump = true
 var rolling = false
 var cant_roll = false
+var jump_timeout = false
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
@@ -48,7 +51,8 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * gravity_multiplier * delta
 	else:
-		can_jump = true
+		if jump_timeout:
+			can_jump = true
 		lock_animation = false
 	if wall_check_right.is_colliding():
 		# flip direction after hitting a wall
@@ -71,12 +75,14 @@ func _physics_process(delta: float) -> void:
 		cant_roll = true
 		roll_timer.start()
 		
-	if visibility_cast_right.is_colliding() and direction == 1 and !cant_roll:
+	if visibility_cast_right.is_colliding() and direction == 1 and !cant_roll and is_on_floor():
 		current_state = states.roll
-	elif visibility_cast_left.is_colliding() and direction == -1 and !cant_roll:
+	elif visibility_cast_left.is_colliding() and direction == -1 and !cant_roll and is_on_floor():
 		current_state = states.roll
 		
 	if jump_cast.is_colliding() and can_jump and current_state != states.roll:
+		jump_timeout = false
+		jump_timer.start()
 		animated_sprite.play("jump")
 		play_sfx("HedgehogJump")
 		velocity.y = JUMP_VELOCITY
@@ -108,3 +114,7 @@ func play_sfx(sfx_name):
 
 func _on_roll_timer_timeout() -> void:
 	cant_roll = false
+
+
+func _on_jump_timer_timeout() -> void:
+	jump_timeout = true

@@ -75,7 +75,7 @@ repeat_size = Vector2(256, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D3" unique_id=327698518]
-position = Vector2(-1, -53)
+position = Vector2(1, -36)
 texture = ExtResource("3_d0grl")
 
 [node name="Parallax2D4" type="Parallax2D" parent="Background" unique_id=59750749]
@@ -85,6 +85,7 @@ repeat_size = Vector2(256, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D4" unique_id=2004868960]
+position = Vector2(0, 17)
 texture = ExtResource("4_1nvli")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1196302294]
@@ -101,7 +102,7 @@ collision_enabled = false
 process_callback = 0
 limit_left = -144
 limit_right = 3504
-limit_bottom = 144
+limit_bottom = 160
 position_smoothing_enabled = true
 script = ExtResource("2_hghvf")
 player = NodePath("../Player")
