@@ -118,6 +118,7 @@ text = "Credits
 script = ExtResource("9_6qf5j")
 
 [node name="CreditsScreen" type="RichTextLabel" parent="Credits" unique_id=779167008]
+visible = false
 z_index = 1
 texture_filter = 1
 layout_mode = 0
