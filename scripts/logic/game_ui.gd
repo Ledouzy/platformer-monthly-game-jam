@@ -19,7 +19,7 @@ func _ready() -> void:
 	# update coins and health
 	coins_label.text = str(score)
 	health_label.text = str(player.get_health()) + "/" + str(player.get_max_health())
-	stage_label.text = stage_names.get(int(SaveSystem.current_data.stage))
+	stage_label.text = stage_names.get(level.level_id)
 
 
 func update_ui():
